@@ -29,6 +29,11 @@ export interface Project {
   duration?: string
   team?: string[]
   links?: Array<{ label: string; href: string }>
+  showcase?: Array<{
+    src: string
+    type: "image" | "video"
+    caption?: string
+  }>
   content: ContentBlock[]
 }
 
@@ -46,6 +51,9 @@ export const projects: Project[] = [
     year: "2024",
     links: [
       { label: "GitHub", href: "https://github.com/avnish100/letterboxd-rss" }
+    ],
+    showcase: [
+      { src: "/projects/letterboxd-rss.jpg", type: "image" },
     ],
     content: [
       { type: "heading", content: "What it does", level: 2 },
@@ -76,6 +84,9 @@ export const projects: Project[] = [
     links: [
       { label: "GitHub", href: "https://github.com/avnish100/financial-analyst-agent" }
     ],
+    showcase: [
+      { src: "/projects/financial-agent.jpg", type: "image" },
+    ],
     content: [
       { type: "heading", content: "The idea", level: 2 },
       { type: "text", content: "Financial analysis involves pulling data from multiple sources, running calculations, and synthesizing it into something actionable. This project explores whether multiple AI agents, each specialized in a different task, can collaborate to produce useful financial summaries." },
@@ -105,6 +116,9 @@ export const projects: Project[] = [
       { label: "Live Site", href: "https://belbullets.run/" },
       { label: "GitHub", href: "https://github.com/avnish100/belbullets-website" }
     ],
+    showcase: [
+      { src: "/projects/belbullets.jpg", type: "image" },
+    ],
     content: [
       { type: "heading", content: "About the project", level: 2 },
       { type: "text", content: "BEL Bullets is a running community that needed a web presence. I built them a clean, fast site using Next.js and TailwindCSS that serves as their main hub for information and community updates." },
@@ -116,6 +130,51 @@ export const projects: Project[] = [
         "Deployed and live at belbullets.run"
       ]},
       { type: "link-card", title: "Visit BEL Bullets", description: "See the live site", href: "https://belbullets.run/", external: true }
+    ]
+  },
+  {
+    slug: "the-altarasa",
+    title: "The Altarasa",
+    subtitle: "Custom Shopify store for a brand",
+    description: "A fully customized Shopify store built on the Dawn theme with custom features like wishlists, product bundles, bookmarks, and a mobile-first navigation experience.",
+    category: "project",
+    tags: ["Shopify", "Liquid", "JavaScript", "Vercel"],
+    color: "bg-fun-yellow",
+    heroImage: "/projects/designsystem.jpg",
+    client: "The Altarasa",
+    role: "Developer",
+    year: "2025",
+    links: [
+      { label: "Live Site", href: "https://thealtarasa.com" }
+    ],
+    showcase: [
+      { src: "/projects/designsystem.jpg", type: "image" },
+      { src: "/projects/aiwriter.jpg", type: "image" },
+      { src: "/projects/ecommerce.jpg", type: "image" },
+      {src: "/projects/taskmanager.jpg", type:"image"}
+    ],
+    content: [
+      { type: "heading", content: "About the project", level: 2 },
+      { type: "text", content: "Built a fully customized Shopify storefront for The Altarasa from the ground up using Shopify's Dawn theme as a base. The store needed to go well beyond a standard template — with custom interactive features, mobile-first UX, and serverless backend integrations." },
+      { type: "heading", content: "Custom features", level: 2 },
+      { type: "list", items: [
+        "WhatsApp chat integration with pre-filled messages and price inquiry support",
+        "Sticky mobile navigation bar with quick access to key store areas",
+        "Article bookmarks system with a serverless Vercel backend for persistence",
+        "Wishlist feature for saving favorite products",
+        "Product bundles for curated multi-item offers",
+        "Promotional popups and sticky information bar",
+        "Expert/team section and flexi layout system for rich content pages",
+        "Social sharing across product and article pages"
+      ]},
+      { type: "heading", content: "Technical highlights", level: 2 },
+      { type: "list", items: [
+        "Customized Shopify Dawn theme using Liquid, JavaScript, and CSS",
+        "Serverless backend on Vercel for the bookmarks system",
+        "Mobile-first design with a bottom tab bar navigation",
+        "Fully configurable via Shopify's theme editor — no code changes needed for the client"
+      ]},
+      { type: "link-card", title: "Visit The Altarasa", description: "See the live store", href: "https://thealtarasa.in", external: true }
     ]
   }
 ]

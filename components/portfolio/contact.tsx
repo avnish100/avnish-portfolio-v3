@@ -1,14 +1,18 @@
 "use client"
 
 import Link from "next/link"
-import { Copy, Check } from "lucide-react"
+// eslint-disable-next-line @typescript-eslint/no-deprecated
+import { Mail, Github, Linkedin, Twitter, Check } from "lucide-react"
 import { useState } from "react"
 import { FadeIn } from "./fade-in"
 
 const socials = [
-  { label: "GitHub", href: "https://github.com/avnish100" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/avnish-jha-875ba120b" },
-  { label: "Twitter", href: "https://x.com/avnisharyanjha" },
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
+  { label: "GitHub", href: "https://github.com/avnish100", icon: Github },
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/avnish-jha-875ba120b", icon: Linkedin },
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
+  { label: "Twitter", href: "https://x.com/avnisharyanjha", icon: Twitter },
 ]
 
 export function Contact() {
@@ -37,34 +41,30 @@ export function Contact() {
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <div className="space-y-3 text-[13px]">
-            <div className="flex items-center gap-3">
-              <span className="text-muted-foreground/60 w-16 shrink-0">Mail</span>
-              <button
-                onClick={copyEmail}
-                className="flex items-center gap-2 hover:text-fun-coral transition-colors link-underline"
-              >
-                {email}
-                {copied ? (
-                  <Check className="w-3.5 h-3.5 text-fun-green" />
-                ) : (
-                  <Copy className="w-3.5 h-3.5 text-muted-foreground/40" />
-                )}
-              </button>
-            </div>
+          <div className="flex items-center gap-5">
+            <button
+              onClick={copyEmail}
+              className="text-foreground hover:text-muted-foreground transition-colors"
+              title={copied ? "Copied!" : "Copy email"}
+            >
+              {copied ? (
+                <Check className="w-5 h-5" strokeWidth={1.25} />
+              ) : (
+                <Mail className="w-5 h-5" strokeWidth={1.25} />
+              )}
+            </button>
 
             {socials.map((social) => (
-              <div key={social.label} className="flex items-center gap-3">
-                <span className="text-muted-foreground/60 w-16 shrink-0">{social.label}</span>
-                <Link
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-fun-coral transition-colors link-underline"
-                >
-                  {social.href.replace("https://", "")}
-                </Link>
-              </div>
+              <Link
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground hover:text-muted-foreground transition-colors"
+                title={social.label}
+              >
+                <social.icon className="w-5 h-5" strokeWidth={1.25} />
+              </Link>
             ))}
           </div>
         </FadeIn>

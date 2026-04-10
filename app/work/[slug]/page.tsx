@@ -4,6 +4,7 @@ import Link from "next/link"
 import { ArrowLeft, ExternalLink } from "lucide-react"
 import { getProjectBySlug, getAllProjectSlugs } from "@/lib/projects"
 import { ContentRenderer } from "@/components/portfolio/content-renderer"
+import { Filmstrip } from "@/components/portfolio/filmstrip"
 import { ThemeToggle } from "@/components/portfolio/theme-toggle"
 
 interface ProjectPageProps {
@@ -44,7 +45,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
       <header className="z-50 nav-glass">
         <div className="px-6 h-11 flex items-center gap-6">
           <Link
@@ -111,6 +112,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             ))}
           </div>
 
+        </div>
+
+        {project.showcase && project.showcase.length > 0 && (
+          <Filmstrip items={project.showcase} title={project.title} />
+        )}
+
+        <div className="mx-auto max-w-3xl px-6">
           {/* Sidebar info */}
           {(project.client || project.role) && (
             <div className="flex gap-8 text-[13px] mb-12 pb-8 border-b border-border">

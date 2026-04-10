@@ -13,7 +13,7 @@ export function Hero() {
         </FadeIn>
         <FadeIn delay={0.1}>
           <p className="text-muted-foreground mt-3 text-[15px] leading-relaxed">
-            Software developer interested in how the things on our screens actually work.
+            I like building things and asking questions.
           </p>
         </FadeIn>
       </div>
