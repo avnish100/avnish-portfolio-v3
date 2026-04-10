@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter, Instrument_Serif } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/portfolio/theme-provider'
+import { AppWrapper } from '@/components/portfolio/app-wrapper'
+import { CursorWrapper } from '@/components/portfolio/cursor-wrapper'
 import './globals.css'
 
 const inter = Inter({
@@ -47,7 +49,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${instrumentSerif.variable} font-sans antialiased`}>
         <ThemeProvider>
-          {children}
+          <AppWrapper>
+            {children}
+          </AppWrapper>
+          <CursorWrapper />
         </ThemeProvider>
         <Analytics />
       </body>

@@ -161,6 +161,7 @@ body {
   width: fit-content;
   max-width: calc(100% - 32px);
   border-radius: 9999px;
+  z-index: 9990;
   backdrop-filter: blur(24px) saturate(200%) brightness(1.05);
   -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.05);
   background:
@@ -321,6 +322,39 @@ body {
 .prose-custom hr {
   border-color: var(--border);
   margin: 2rem 0;
+}
+
+/* Preloader */
+.preloader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background);
+  transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.preloader-logo {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 3.5rem;
+  font-style: italic;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+  animation: preloader-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+@keyframes preloader-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Pulsing separator dots */
