@@ -1,0 +1,5 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Concept 6: AJ with a single underline stroke — clean, editorial -->
+  <text x="3" y="28" font-family="Georgia, 'Times New Roman', serif" font-size="28" font-style="italic" font-weight="400" fill="currentColor" letter-spacing="-2">AJ</text>
+  <line x1="3" y1="33" x2="36" y2="33" stroke="currentColor" stroke-width="1.5" opacity="0.25"/>
+</svg>

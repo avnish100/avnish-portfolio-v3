@@ -1,0 +1,32 @@
+---
+title: "Understanding OAuth with PKCE"
+description: "A breakdown of how OAuth 2.0 works with PKCE — why it exists, what problem it solves, and how the flow actually works step by step."
+date: "2025-04-09"
+tags: ["Security", "OAuth", "Web"]
+---
+
+OAuth is everywhere. Every "Sign in with Google" button, every third-party app that asks for your GitHub permissions — it's all OAuth under the hood. But the standard authorization code flow has a problem when used in public clients like SPAs and mobile apps.
+
+## The problem with public clients
+
+Traditional OAuth relies on a client secret to exchange the authorization code for tokens. Server-side apps can keep this secret safe. But a single-page app running in the browser? The secret would be right there in the JavaScript bundle for anyone to extract.
+
+This is where PKCE (Proof Key for Code Exchange, pronounced "pixy") comes in.
+
+## How PKCE works
+
+Instead of a static client secret, PKCE uses a dynamically generated one-time secret for each authorization request:
+
+1. **Code Verifier** — the client generates a random string (43-128 characters)
+2. **Code Challenge** — the client hashes the verifier using SHA-256 and base64url-encodes it
+3. **Authorization Request** — the client sends the code challenge (not the verifier) to the authorization server
+4. **Token Exchange** — when exchanging the auth code for tokens, the client sends the original code verifier
+5. **Server Verification** — the authorization server hashes the verifier and checks it matches the original challenge
+
+The key insight: even if an attacker intercepts the authorization code, they can't exchange it for tokens because they don't have the code verifier. And the code challenge (which they could intercept) is a one-way hash — you can't reverse it to get the verifier.
+
+## Why this matters
+
+PKCE isn't just for SPAs. As of OAuth 2.1, PKCE is recommended for **all** clients, including server-side apps. It adds a layer of protection against authorization code interception attacks regardless of the client type.
+
+If you're implementing OAuth in any new application, use PKCE. There's no good reason not to.

@@ -1,18 +1,23 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Instrument_Serif } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import { AppWrapper } from '@/components/portfolio/app-wrapper'
-import { CursorWrapper } from '@/components/portfolio/cursor-wrapper'
+import { ThemeProvider } from '@/components/portfolio/theme-provider'
 import './globals.css'
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-inter"
-});
+  variable: "--font-inter",
+})
+
+const instrumentSerif = Instrument_Serif({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-serif",
+})
 
 export const metadata: Metadata = {
-  title: 'Portfolio | Software Engineer & Product Manager',
-  description: 'Software engineer turned product manager. Previously a Shopify developer and freelancer. Building products that matter.',
+  title: 'Avnish Jha',
+  description: 'Software developer. Building things and writing about how they work.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -39,12 +44,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.variable} font-sans antialiased`}>
-        <AppWrapper>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} ${instrumentSerif.variable} font-sans antialiased`}>
+        <ThemeProvider>
           {children}
-        </AppWrapper>
-        <CursorWrapper />
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

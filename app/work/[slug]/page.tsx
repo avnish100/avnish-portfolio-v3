@@ -4,7 +4,7 @@ import Link from "next/link"
 import { ArrowLeft, ExternalLink } from "lucide-react"
 import { getProjectBySlug, getAllProjectSlugs } from "@/lib/projects"
 import { ContentRenderer } from "@/components/portfolio/content-renderer"
-import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/portfolio/theme-toggle"
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>
@@ -17,13 +17,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: ProjectPageProps) {
   const { slug } = await params
   const project = getProjectBySlug(slug)
-  
+
   if (!project) {
     return { title: "Project Not Found" }
   }
-  
+
   return {
-    title: `${project.title} | Portfolio`,
+    title: `${project.title} | Avnish Jha`,
     description: project.description,
   }
 }
@@ -31,147 +31,120 @@ export async function generateMetadata({ params }: ProjectPageProps) {
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params
   const project = getProjectBySlug(slug)
-  
+
   if (!project) {
     notFound()
   }
-  
+
   const categoryLabels = {
     "case-study": "Case Study",
     "project": "Project",
     "experiment": "Experiment",
     "writing": "Writing"
   }
-  
+
   return (
     <main className="min-h-screen">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
-          <Link 
-            href="/#work" 
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+      <header className="z-50 nav-glass">
+        <div className="px-6 h-11 flex items-center gap-6">
+          <Link
+            href="/#work"
+            className="flex items-center gap-2 text-[13px] text-muted-foreground hover:text-foreground transition-colors link-underline"
           >
-            <ArrowLeft className="w-4 h-4" />
-            Back to work
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Work
           </Link>
-          
           {project.links && project.links.length > 0 && (
-            <div className="flex gap-3">
+            <div className="flex items-center gap-4 ml-auto">
               {project.links.map((link) => (
-                <Button key={link.href} variant="outline" size="sm" asChild>
-                  <a href={link.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                    {link.label}
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </Button>
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-[13px] text-muted-foreground hover:text-foreground transition-colors link-underline"
+                >
+                  {link.label}
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               ))}
             </div>
           )}
+          <ThemeToggle className={project.links && project.links.length > 0 ? "" : "ml-auto"} />
         </div>
       </header>
-      
-      {/* Hero */}
-      <section className="pt-32 pb-16">
-        <div className="mx-auto max-w-6xl px-6">
+
+      <article className="pt-28 pb-16">
+        <div className="mx-auto max-w-3xl px-6">
           {/* Meta */}
-          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
-            <span className={`px-3 py-1 rounded-full text-xs font-medium ${project.color} text-background`}>
-              {categoryLabels[project.category]}
-            </span>
-            <span>{project.year}</span>
+          <div className="flex items-center gap-2 text-[12px] text-muted-foreground/60 mb-5 tracking-[0.02em]">
+            <span>{categoryLabels[project.category]}</span>
+            <span className="dot-separator">·</span>
+            <span className="tabular-nums">{project.year}</span>
             {project.duration && (
               <>
-                <span className="w-1 h-1 rounded-full bg-muted-foreground" />
+                <span className="dot-separator">·</span>
                 <span>{project.duration}</span>
               </>
             )}
           </div>
-          
+
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-4 text-balance">
+          <h1 className="font-serif text-3xl md:text-4xl italic tracking-tight mb-3">
             {project.title}
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl">
+          <p className="text-[15px] text-muted-foreground/70 mb-8 leading-relaxed tracking-[0.01em]">
             {project.subtitle}
           </p>
-          
+
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 mt-8">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-3 py-1.5 rounded-full bg-secondary text-sm"
-              >
-                {tag}
+          <div className="flex flex-wrap items-center gap-x-1 mb-12">
+            {project.tags.map((tag, i) => (
+              <span key={tag} className="flex items-center gap-1">
+                <span className="text-[11px] text-muted-foreground/70 tracking-wide">
+                  {tag}
+                </span>
+                {i < project.tags.length - 1 && (
+                  <span className="text-muted-foreground/40 dot-separator text-[11px]" style={{ animationDelay: `${i * 0.4}s` }}>·</span>
+                )}
               </span>
             ))}
           </div>
-        </div>
-      </section>
-      
-      {/* Hero Image */}
-      <section className="pb-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="relative aspect-video rounded-xl overflow-hidden bg-secondary">
-            <Image
-              src={project.heroImage}
-              alt={project.title}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        </div>
-      </section>
-      
-      {/* Project Meta Sidebar + Content */}
-      <section className="pb-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="grid lg:grid-cols-[240px_1fr] gap-16">
-            {/* Sidebar */}
-            <aside className="space-y-8 lg:sticky lg:top-24 lg:self-start">
+
+          {/* Sidebar info */}
+          {(project.client || project.role) && (
+            <div className="flex gap-8 text-[13px] mb-12 pb-8 border-b border-border">
               {project.client && (
                 <div>
-                  <h3 className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Client</h3>
-                  <p className="font-medium">{project.client}</p>
+                  <span className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground/50 block mb-1">Client</span>
+                  <span className="font-medium">{project.client}</span>
                 </div>
               )}
               {project.role && (
                 <div>
-                  <h3 className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Role</h3>
-                  <p className="font-medium">{project.role}</p>
+                  <span className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground/50 block mb-1">Role</span>
+                  <span className="font-medium">{project.role}</span>
                 </div>
               )}
-              {project.team && project.team.length > 0 && (
-                <div>
-                  <h3 className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Team</h3>
-                  <ul className="space-y-1">
-                    {project.team.map((member) => (
-                      <li key={member} className="font-medium">{member}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </aside>
-            
-            {/* Content */}
-            <article className="min-w-0">
-              <ContentRenderer blocks={project.content} />
-            </article>
+            </div>
+          )}
+
+          {/* Content */}
+          <div className="prose-custom">
+            <ContentRenderer blocks={project.content} />
+          </div>
+
+          {/* Back link */}
+          <div className="mt-16 pt-6 border-t border-border">
+            <Link
+              href="/#work"
+              className="text-[13px] text-muted-foreground/60 hover:text-foreground transition-colors link-underline"
+            >
+              Back to all work
+            </Link>
           </div>
         </div>
-      </section>
-      
-      {/* Footer CTA */}
-      <section className="py-16 border-t border-border">
-        <div className="mx-auto max-w-6xl px-6 text-center">
-          <p className="text-muted-foreground mb-4">Interested in working together?</p>
-          <Button asChild>
-            <Link href="/#contact">Get in touch</Link>
-          </Button>
-        </div>
-      </section>
+      </article>
     </main>
   )
 }

@@ -1,74 +1,19 @@
 "use client"
 
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { ArrowUpRight, Copy, Check } from "lucide-react"
-import { useState, useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { Copy, Check } from "lucide-react"
+import { useState } from "react"
+import { FadeIn } from "./fade-in"
 
 const socials = [
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "Twitter", href: "https://twitter.com" },
-  { label: "GitHub", href: "https://github.com" },
-  { label: "Dribbble", href: "https://dribbble.com" },
+  { label: "GitHub", href: "https://github.com/avnish100" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/avnisharyan" },
+  { label: "Twitter", href: "https://twitter.com/avnisharyan" },
 ]
-
-function MagneticButton({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current) return
-    const rect = ref.current.getBoundingClientRect()
-    const x = e.clientX - rect.left - rect.width / 2
-    const y = e.clientY - rect.top - rect.height / 2
-    setPosition({ x: x * 0.3, y: y * 0.3 })
-  }
-
-  const handleMouseLeave = () => {
-    setPosition({ x: 0, y: 0 })
-  }
-
-  return (
-    <motion.div
-      ref={ref}
-      className={`magnetic-wrap ${className}`}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 300, damping: 15 }}
-    >
-      {children}
-    </motion.div>
-  )
-}
-
-function RevealText({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-50px" })
-
-  return (
-    <div ref={ref} className="overflow-hidden">
-      <motion.div
-        initial={{ y: "100%" }}
-        animate={isInView ? { y: 0 } : {}}
-        transition={{
-          duration: 0.8,
-          delay,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-      >
-        {children}
-      </motion.div>
-    </div>
-  )
-}
 
 export function Contact() {
   const [copied, setCopied] = useState(false)
-  const email = "hello@alexchen.design"
-  const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
+  const email = "avnishjha1005@gmail.com"
 
   const copyEmail = () => {
     navigator.clipboard.writeText(email)
@@ -77,127 +22,59 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 border-t border-border" ref={sectionRef}>
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="grid lg:grid-cols-2 gap-16">
-          <div>
-            <RevealText>
-              <h2 className="text-sm text-muted-foreground uppercase tracking-widest mb-6">Contact</h2>
-            </RevealText>
+    <section id="contact" className="py-16 border-t border-border">
+      <div className="mx-auto max-w-3xl px-6">
+        <FadeIn>
+          <h2 className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-8">
+            Contact
+          </h2>
+        </FadeIn>
 
-            {/* Big animated heading */}
-            <div className="space-y-2">
-              {["If you'd like to discuss", "a project or just say hi,", "I'm always down to chat."].map((line, i) => (
-                <RevealText key={i} delay={0.1 + i * 0.1}>
-                  <p className="text-2xl md:text-3xl font-normal leading-relaxed">
-                    {line}
-                  </p>
-                </RevealText>
-              ))}
-            </div>
+        <FadeIn delay={0.05}>
+          <p className="text-[15px] mb-6 leading-relaxed">
+            {"If you'd like to discuss a project or just say hi, I'm always down to chat."}
+          </p>
+        </FadeIn>
 
-            <motion.div
-              className="mt-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              <MagneticButton>
-                <Button
-                  className="rounded-full px-8 py-6 text-base bg-foreground text-background hover:bg-fun-coral transition-all duration-300"
-                  data-cursor="Mail"
-                  asChild
-                >
-                  <Link href={`mailto:${email}`}>
-                    Get in Touch
-                    <ArrowUpRight className="w-4 h-4 ml-2" />
-                  </Link>
-                </Button>
-              </MagneticButton>
-            </motion.div>
-          </div>
-
-          <div className="space-y-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h3 className="text-sm text-muted-foreground uppercase tracking-widest mb-4">Mail</h3>
-              <motion.button
+        <FadeIn delay={0.1}>
+          <div className="space-y-3 text-[13px]">
+            <div className="flex items-center gap-3">
+              <span className="text-muted-foreground/60 w-16 shrink-0">Mail</span>
+              <button
                 onClick={copyEmail}
-                className="group flex items-center gap-3 text-lg hover:text-fun-coral transition-colors"
-                data-cursor="Copy"
-                whileHover={{ x: 4 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                className="flex items-center gap-2 hover:text-fun-coral transition-colors link-underline"
               >
                 {email}
                 {copied ? (
-                  <motion.span
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 500 }}
-                  >
-                    <Check className="w-4 h-4 text-fun-green" />
-                  </motion.span>
+                  <Check className="w-3.5 h-3.5 text-fun-green" />
                 ) : (
-                  <Copy className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Copy className="w-3.5 h-3.5 text-muted-foreground/40" />
                 )}
-              </motion.button>
-            </motion.div>
+              </button>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              <h3 className="text-sm text-muted-foreground uppercase tracking-widest mb-4">Socials</h3>
-              <div className="flex flex-col gap-3">
-                {socials.map((social, index) => (
-                  <motion.div
-                    key={social.label}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-                  >
-                    <Link
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-center gap-2 hover:text-fun-coral transition-all duration-300 w-fit text-lg"
-                      data-cursor="Open"
-                    >
-                      <motion.span
-                        className="inline-block"
-                        whileHover={{ x: 6 }}
-                        transition={{ type: "spring", stiffness: 400 }}
-                      >
-                        {social.label}
-                      </motion.span>
-                      <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </Link>
-                  </motion.div>
-                ))}
+            {socials.map((social) => (
+              <div key={social.label} className="flex items-center gap-3">
+                <span className="text-muted-foreground/60 w-16 shrink-0">{social.label}</span>
+                <Link
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-fun-coral transition-colors link-underline"
+                >
+                  {social.href.replace("https://", "")}
+                </Link>
               </div>
-            </motion.div>
+            ))}
           </div>
-        </div>
+        </FadeIn>
 
         {/* Footer */}
-        <motion.footer
-          className="mt-24 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 1 }}
-        >
-          <p className="text-sm text-muted-foreground">
-            2026. Crafted by Alex
-          </p>
-          <div className="flex gap-6 text-sm text-muted-foreground">
-            <Link href="#" className="hover:text-foreground transition-colors">Imprint</Link>
-            <Link href="#" className="hover:text-foreground transition-colors">Privacy Policy</Link>
-          </div>
-        </motion.footer>
+        <FadeIn delay={0.15}>
+          <footer className="mt-16 pt-6 border-t border-border flex justify-between items-center text-[12px] text-muted-foreground/50">
+            <p>2026. Avnish Jha</p>
+          </footer>
+        </FadeIn>
       </div>
     </section>
   )

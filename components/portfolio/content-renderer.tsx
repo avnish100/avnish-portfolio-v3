@@ -29,9 +29,9 @@ function Block({ block }: { block: ContentBlock }) {
     case "heading":
       const HeadingTag = `h${block.level || 2}` as keyof JSX.IntrinsicElements
       const headingClasses = {
-        2: "text-2xl font-medium mt-12 first:mt-0",
-        3: "text-xl font-medium mt-8",
-        4: "text-lg font-medium mt-6"
+        2: "text-2xl font-medium mt-12 first:mt-0 mb-3",
+        3: "text-xl font-medium mt-8 mb-2",
+        4: "text-lg font-medium mt-6 mb-2"
       }
       return (
         <HeadingTag className={headingClasses[block.level || 2]}>
@@ -125,8 +125,8 @@ function Block({ block }: { block: ContentBlock }) {
       const Icon = variant.icon
       return (
         <div className={`rounded-lg border-l-4 p-6 ${variant.color}`}>
-          <div className="flex gap-3">
-            <Icon className="w-5 h-5 mt-0.5 shrink-0" />
+          <div className="flex gap-3 items-start">
+            <Icon className="w-5 h-5 shrink-0" />
             <div>
               <div className="font-medium mb-1">{block.title}</div>
               <p className="text-muted-foreground">{block.content}</p>

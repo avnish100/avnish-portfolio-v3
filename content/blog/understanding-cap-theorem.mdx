@@ -1,0 +1,33 @@
+---
+title: "Understanding CAP Theorem"
+description: "What the CAP theorem actually says about distributed systems, and why the 'pick two' framing is misleading."
+date: "2024-09-03"
+tags: ["Distributed Systems", "Engineering"]
+---
+
+CAP theorem is one of those things every engineer has heard of but few think about carefully. The usual summary — "pick two out of consistency, availability, and partition tolerance" — is catchy but misleading.
+
+## The three properties
+
+**Consistency** means every read receives the most recent write. If you write a value to one node, a subsequent read from any node returns that value.
+
+**Availability** means every request receives a response (not an error). The system keeps serving requests even if some nodes are down.
+
+**Partition tolerance** means the system continues to operate even when network messages between nodes are dropped or delayed.
+
+## Why "pick two" is wrong
+
+The framing suggests you have three equal choices: CA, CP, or AP. But in any real distributed system, network partitions **will** happen. You don't get to opt out of partition tolerance.
+
+So the real choice is: when a partition occurs, do you sacrifice consistency or availability?
+
+- **CP systems** — during a partition, some requests will fail or block. The system refuses to return potentially stale data. Example: most traditional databases in a distributed setup.
+- **AP systems** — during a partition, the system continues serving requests but may return stale data. Example: DNS, Cassandra.
+
+When there's no partition, you can have both consistency and availability. The trade-off only kicks in during network failures.
+
+## What this means in practice
+
+Most systems don't need to make a binary choice. They can tune consistency levels per operation. Need strong consistency for financial transactions? Use synchronous replication for those. Fine with eventual consistency for a user's profile photo? Use async replication.
+
+The real lesson of CAP isn't "pick two." It's "understand your failure modes and design for them deliberately."

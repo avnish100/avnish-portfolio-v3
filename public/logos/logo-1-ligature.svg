@@ -1,0 +1,5 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Concept 1: Ligature — A and J share a stroke, serif-inspired -->
+  <text x="4" y="32" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-style="italic" font-weight="400" fill="currentColor" letter-spacing="-3">AJ</text>
+  <line x1="28" y1="33" x2="28" y2="38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

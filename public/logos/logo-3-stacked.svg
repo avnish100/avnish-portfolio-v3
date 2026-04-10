@@ -1,0 +1,5 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Concept 3: Stacked — A on top, J below, compact monogram -->
+  <text x="10" y="20" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-style="italic" font-weight="400" fill="currentColor" text-anchor="middle" transform="translate(10, 0)">A</text>
+  <text x="10" y="38" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-style="italic" font-weight="400" fill="currentColor" text-anchor="middle" transform="translate(10, 0)" opacity="0.5">J</text>
+</svg>
