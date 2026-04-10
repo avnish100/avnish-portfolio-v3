@@ -7,8 +7,8 @@ import { FadeIn } from "./fade-in"
 
 const socials = [
   { label: "GitHub", href: "https://github.com/avnish100" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/avnisharyan" },
-  { label: "Twitter", href: "https://twitter.com/avnisharyan" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/avnish-jha-875ba120b" },
+  { label: "Twitter", href: "https://x.com/avnisharyanjha" },
 ]
 
 export function Contact() {
@@ -72,7 +72,7 @@ export function Contact() {
         {/* Footer */}
         <FadeIn delay={0.15}>
           <footer className="mt-16 pt-6 border-t border-border flex justify-between items-center text-[12px] text-muted-foreground/50">
-            <p>2026. Avnish Jha</p>
+            <p>{new Date().getFullYear()}. Avnish Jha</p>
           </footer>
         </FadeIn>
       </div>
