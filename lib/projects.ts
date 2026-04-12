@@ -46,14 +46,14 @@ export const projects: Project[] = [
     category: "project",
     tags: ["Node.js", "Express", "RSS"],
     color: "bg-fun-coral",
-    heroImage: "/projects/letterboxd-rss.jpg",
+    heroImage: "/projects/taskmanager.jpg",
     role: "Developer",
     year: "2024",
     links: [
       { label: "GitHub", href: "https://github.com/avnish100/letterboxd-rss" }
     ],
     showcase: [
-      { src: "/projects/letterboxd-rss.jpg", type: "image" },
+      { src: "/projects/taskmanager.jpg", type: "image" },
     ],
     content: [
       { type: "heading", content: "What it does", level: 2 },
@@ -78,14 +78,14 @@ export const projects: Project[] = [
     category: "experiment",
     tags: ["Python", "AI Agents", "Finance"],
     color: "bg-fun-blue",
-    heroImage: "/projects/financial-agent.jpg",
+    heroImage: "/projects/aiwriter.jpg",
     role: "Developer",
     year: "2024",
     links: [
       { label: "GitHub", href: "https://github.com/avnish100/financial-analyst-agent" }
     ],
     showcase: [
-      { src: "/projects/financial-agent.jpg", type: "image" },
+      { src: "/projects/aiwriter.jpg", type: "image" },
     ],
     content: [
       { type: "heading", content: "The idea", level: 2 },
@@ -109,7 +109,7 @@ export const projects: Project[] = [
     category: "project",
     tags: ["Next.js", "TailwindCSS"],
     color: "bg-fun-green",
-    heroImage: "/projects/belbullets.jpg",
+    heroImage: "/projects/ecommerce.jpg",
     role: "Developer",
     year: "2024",
     links: [
@@ -117,7 +117,7 @@ export const projects: Project[] = [
       { label: "GitHub", href: "https://github.com/avnish100/belbullets-website" }
     ],
     showcase: [
-      { src: "/projects/belbullets.jpg", type: "image" },
+      { src: "/projects/ecommerce.jpg", type: "image" },
     ],
     content: [
       { type: "heading", content: "About the project", level: 2 },

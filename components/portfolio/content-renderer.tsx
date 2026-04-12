@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import type { ElementType } from "react"
 import { ExternalLink, Info, CheckCircle, AlertTriangle } from "lucide-react"
 import type { ContentBlock } from "@/lib/projects"
 
@@ -27,14 +28,15 @@ function Block({ block }: { block: ContentBlock }) {
       )
 
     case "heading":
-      const HeadingTag = `h${block.level || 2}` as keyof JSX.IntrinsicElements
+      const level = block.level ?? 2
+      const HeadingTag = ({ 2: "h2", 3: "h3", 4: "h4" }[level] ?? "h2") as ElementType
       const headingClasses = {
         2: "text-2xl font-medium mt-12 first:mt-0 mb-3",
         3: "text-xl font-medium mt-8 mb-2",
-        4: "text-lg font-medium mt-6 mb-2"
+        4: "text-lg font-medium mt-6 mb-2",
       }
       return (
-        <HeadingTag className={headingClasses[block.level || 2]}>
+        <HeadingTag className={headingClasses[level]}>
           {block.content}
         </HeadingTag>
       )

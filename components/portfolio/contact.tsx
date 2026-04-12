@@ -19,10 +19,14 @@ export function Contact() {
   const [copied, setCopied] = useState(false)
   const email = "avnishjha1005@gmail.com"
 
-  const copyEmail = () => {
-    navigator.clipboard.writeText(email)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(email)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      window.location.href = `mailto:${email}`
+    }
   }
 
   return (
@@ -43,6 +47,7 @@ export function Contact() {
         <FadeIn delay={0.1}>
           <div className="flex items-center gap-5">
             <button
+              type="button"
               onClick={copyEmail}
               className="text-foreground hover:text-muted-foreground transition-colors"
               title={copied ? "Copied!" : "Copy email"}
