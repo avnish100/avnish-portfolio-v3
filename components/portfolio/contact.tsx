@@ -1,17 +1,13 @@
 "use client"
 
 import Link from "next/link"
-// eslint-disable-next-line @typescript-eslint/no-deprecated
 import { Mail, Github, Linkedin, Twitter, Check } from "lucide-react"
 import { useState } from "react"
 import { FadeIn } from "./fade-in"
 
 const socials = [
-  // eslint-disable-next-line @typescript-eslint/no-deprecated
   { label: "GitHub", href: "https://github.com/avnish100", icon: Github },
-  // eslint-disable-next-line @typescript-eslint/no-deprecated
   { label: "LinkedIn", href: "https://www.linkedin.com/in/avnish-jha-875ba120b", icon: Linkedin },
-  // eslint-disable-next-line @typescript-eslint/no-deprecated
   { label: "Twitter", href: "https://x.com/avnisharyanjha", icon: Twitter },
 ]
 
@@ -40,7 +36,8 @@ export function Contact() {
 
         <FadeIn delay={0.05}>
           <p className="text-[15px] mb-6 leading-relaxed">
-            {"If you'd like to discuss a project or just say hi, I'm always down to chat."}
+            I’m always happy to talk about product engineering, data and
+            analytics work, or an interesting problem that still needs framing.
           </p>
         </FadeIn>
 
@@ -57,6 +54,13 @@ export function Contact() {
               ) : (
                 <Mail className="w-5 h-5" strokeWidth={1.25} />
               )}
+            </button>
+            <button
+              type="button"
+              onClick={copyEmail}
+              className="-ml-2 text-[13px] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {copied ? "Email copied" : email}
             </button>
 
             {socials.map((social) => (

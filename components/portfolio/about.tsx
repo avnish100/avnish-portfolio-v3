@@ -8,8 +8,8 @@ const timeline = [
 ]
 
 const skills = [
-  "React", "Next.js", "TypeScript", "Node.js", "Express", "Python",
-  "TailwindCSS", "GraphQL", "SQL", "Git",
+  "Product discovery", "Experimentation", "Python", "SQL", "React",
+  "Next.js", "TypeScript", "Node.js", "GraphQL",
 ]
 
 export function About() {
@@ -23,6 +23,21 @@ export function About() {
         </FadeIn>
 
         <FadeIn delay={0.1}>
+          <p className="mb-10 max-w-2xl font-serif text-xl italic leading-relaxed tracking-tight md:text-2xl">
+            I like problems that start with an unclear question and end with a
+            shipped change, a useful answer, or a better decision.
+          </p>
+        </FadeIn>
+
+        <FadeIn delay={0.12}>
+          <p className="mb-10 max-w-2xl text-[14px] leading-relaxed text-muted-foreground">
+            My work sits between engineering, data, and product. I spend time
+            clarifying what success means, understanding the tradeoffs, and
+            making the result useful to the people who need to act on it.
+          </p>
+        </FadeIn>
+
+        <FadeIn delay={0.15}>
           <div className="space-y-2.5 text-[13px] mb-10">
             {timeline.map((item, i) => (
               <div key={i} className="flex gap-6">
@@ -33,7 +48,7 @@ export function About() {
           </div>
         </FadeIn>
 
-        <FadeIn delay={0.15}>
+        <FadeIn delay={0.2}>
           <p className="text-[13px] text-muted-foreground/70 flex flex-wrap items-center gap-x-1">
             {skills.map((skill, i) => (
               <span key={skill} className="flex items-center gap-1">
