@@ -1,11 +1,10 @@
 import { notFound } from "next/navigation"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, ExternalLink } from "lucide-react"
-import { PortableText } from "next-sanity"
 import { getAllProjectSlugs } from "@/lib/projects"
 import { getProject } from "@/lib/sanity.queries"
 import { ContentRenderer } from "@/components/portfolio/content-renderer"
+import { SanityPortableText } from "@/components/portfolio/sanity-portable-text"
 import { Filmstrip } from "@/components/portfolio/filmstrip"
 import { ThemeToggle } from "@/components/portfolio/theme-toggle"
 
@@ -142,7 +141,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           {/* Content */}
           <div className="prose-custom">
             {project.body?.length
-              ? <PortableText value={project.body as never[]} />
+              ? <SanityPortableText value={project.body} />
               : <ContentRenderer blocks={project.content} />}
           </div>
 

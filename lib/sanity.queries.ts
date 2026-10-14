@@ -2,16 +2,16 @@ import { hasSanityConfig, sanityClient } from "./sanity.client"
 import { projects, type Project } from "./projects"
 
 const projectListQuery = `*[_type == "project" && featured != false] | order(order asc, year desc) {
-  "slug": slug.current, title, "subtitle": summary, "description": summary, category,
+  "slug": slug.current, title, "subtitle": coalesce(subtitle, summary), "description": summary, category,
   "tags": coalesce(technologies, services, []), year: string(year), duration, client, role,
-  "heroImage": cover.asset->url, "links": externalLinks[]{label, "href": url},
+  "color": coalesce(accent, "bg-fun-coral"), "heroImage": cover.asset->url, "links": externalLinks[]{label, "href": url},
   "showcase": media[]{"src": coalesce(image.asset->url, video.asset->url, embedUrl), "type": kind, caption}
 }`
 
 const projectQuery = `*[_type == "project" && slug.current == $slug][0] {
-  "slug": slug.current, title, "subtitle": summary, "description": summary, category,
+  "slug": slug.current, title, "subtitle": coalesce(subtitle, summary), "description": summary, category,
   "tags": coalesce(technologies, services, []), year: string(year), duration, client, role,
-  "heroImage": cover.asset->url, "links": externalLinks[]{label, "href": url},
+  "color": coalesce(accent, "bg-fun-coral"), "heroImage": cover.asset->url, "links": externalLinks[]{label, "href": url},
   "showcase": media[]{"src": coalesce(image.asset->url, video.asset->url, embedUrl), "type": kind, caption}, body
 }`
 

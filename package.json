@@ -6,6 +6,7 @@
     "dev": "next dev",
     "sanity": "sanity dev",
     "sanity:deploy": "sanity deploy",
+    "sanity:seed": "sanity exec migrations/seed-projects.ts --with-user-token",
     "build": "next build",
     "start": "next start",
     "lint": "eslint ."
