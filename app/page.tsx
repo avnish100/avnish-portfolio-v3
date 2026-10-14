@@ -4,13 +4,15 @@ import { Work } from "@/components/portfolio/work"
 import { BlogPreview } from "@/components/portfolio/blog-preview"
 import { About } from "@/components/portfolio/about"
 import { Contact } from "@/components/portfolio/contact"
+import { getProjects } from "@/lib/sanity.queries"
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getProjects()
   return (
     <main className="min-h-screen">
       <Header />
       <Hero />
-      <Work />
+      <Work projects={projects} />
       <BlogPreview />
       <About />
       <Contact />

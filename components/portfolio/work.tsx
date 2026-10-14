@@ -1,10 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { projects } from "@/lib/projects"
+import { type Project } from "@/lib/projects"
 import { FadeIn } from "./fade-in"
 
-export function Work() {
+export function Work({ projects }: { projects: Project[] }) {
   return (
     <section id="work" className="py-16 border-t border-border">
       <div className="mx-auto max-w-3xl px-6">

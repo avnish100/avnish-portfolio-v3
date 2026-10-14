@@ -2,7 +2,9 @@ import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, ExternalLink } from "lucide-react"
-import { getProjectBySlug, getAllProjectSlugs } from "@/lib/projects"
+import { PortableText } from "@portabletext/react"
+import { getAllProjectSlugs } from "@/lib/projects"
+import { getProject } from "@/lib/sanity.queries"
 import { ContentRenderer } from "@/components/portfolio/content-renderer"
 import { Filmstrip } from "@/components/portfolio/filmstrip"
 import { ThemeToggle } from "@/components/portfolio/theme-toggle"
@@ -17,7 +19,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ProjectPageProps) {
   const { slug } = await params
-  const project = getProjectBySlug(slug)
+  const project = await getProject(slug)
 
   if (!project) {
     return { title: "Project Not Found" }
@@ -31,7 +33,7 @@ export async function generateMetadata({ params }: ProjectPageProps) {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params
-  const project = getProjectBySlug(slug)
+  const project = await getProject(slug)
 
   if (!project) {
     notFound()
@@ -139,7 +141,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
           {/* Content */}
           <div className="prose-custom">
-            <ContentRenderer blocks={project.content} />
+            {project.body?.length
+              ? <PortableText value={project.body as never[]} />
+              : <ContentRenderer blocks={project.content} />}
           </div>
 
           {/* Back link */}

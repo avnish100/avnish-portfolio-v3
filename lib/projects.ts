@@ -34,6 +34,7 @@ export interface Project {
     type: "image" | "video"
     caption?: string
   }>
+  body?: unknown[]
   content: ContentBlock[]
 }
 
