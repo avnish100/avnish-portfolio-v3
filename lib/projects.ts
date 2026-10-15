@@ -42,8 +42,8 @@ export const projects: Project[] = [
   {
     slug: "job-tracker-extension",
     title: "Job Tracker Extension",
-    subtitle: "A browser extension that turns job listings into structured Excel rows",
-    description: "A product case study for reducing the repetitive work of tracking applications while keeping the spreadsheet people already use.",
+    subtitle: "Capturing job listings in Excel without the copy-and-paste routine",
+    description: "A proposal for turning Excel from a passive application log into a job-search system that captures context, preserves momentum, and helps people decide what to do next.",
     category: "case-study",
     tags: ["Product Discovery", "Browser Extension", "Excel", "Workflow Design"],
     color: "bg-fun-yellow",
@@ -51,72 +51,28 @@ export const projects: Project[] = [
     role: "Solo PM / Builder",
     year: "2026",
     content: [
-      { type: "callout", title: "Product principle", content: "The extension should remove administrative work without asking candidates to abandon the Excel workflow they already understand and control.", variant: "success" },
-      { type: "heading", content: "The problem", level: 2 },
-      { type: "text", content: "Job discovery happens in the browser, but tracking usually happens somewhere else. Every application creates a small copy-and-paste task, and those small tasks compound during an already demanding search." },
-      { type: "heading", content: "Pain points", level: 2 },
-      { type: "list", items: [
-        "Re-entering the company, role, location, URL, and application date for every listing",
-        "Switching between a job board, application form, and spreadsheet breaks focus",
-        "Inconsistent row formats make the sheet harder to filter and review",
-        "Duplicate listings are easy to save when the same role appears on several boards",
-        "Application status and follow-up dates become stale after the initial entry",
-        "A long list of rows does not clearly show where the job-search funnel is breaking"
-      ]},
-      { type: "heading", content: "The product bet", level: 2 },
-      { type: "text", content: "If a candidate can capture a listing at the moment they decide it is worth pursuing, with the important fields already extracted, they will maintain a more complete and useful record with less effort." },
-      { type: "heading", content: "Pain point → feature", level: 2 },
-      { type: "columns", columns: [
-        [
-          { type: "heading", content: "Repetitive data entry", level: 3 },
-          { type: "text", content: "Extract company, title, location, source URL, and date from the active listing, then show a preview before saving." },
-          { type: "heading", content: "Messy spreadsheet rows", level: 3 },
-          { type: "text", content: "Map captured information into a stable Excel table schema with normalized dates and statuses." },
-          { type: "heading", content: "Duplicate applications", level: 3 },
-          { type: "text", content: "Check the workbook for the same company, role, or listing URL before creating a new row." }
-        ],
-        [
-          { type: "heading", content: "Lost follow-ups", level: 3 },
-          { type: "text", content: "Let candidates set a next-action date while saving and surface applications that need attention." },
-          { type: "heading", content: "Stale statuses", level: 3 },
-          { type: "text", content: "Provide a small extension view for moving an application through saved, applied, interviewing, offer, and closed." },
-          { type: "heading", content: "No funnel visibility", level: 3 },
-          { type: "text", content: "Summarize applications, response rate, stage conversion, and time in stage from the same workbook data." }
-        ]
-      ]},
-      { type: "heading", content: "MVP scope", level: 2 },
-      { type: "list", ordered: true, items: [
-        "Connect one Excel workbook and select the destination table",
-        "Capture the active listing and allow the candidate to correct extracted fields",
-        "Append a normalized row with a default status and application date",
-        "Warn about likely duplicates before saving",
-        "Confirm success and link directly to the new spreadsheet row"
-      ]},
-      { type: "callout", title: "What I would not build first", content: "A proprietary job database, résumé generator, social network, or full CRM. Those ideas increase scope before the core capture-to-Excel workflow has proved useful.", variant: "warning" },
-      { type: "heading", content: "Success measures", level: 2 },
-      { type: "list", items: [
-        "Activation: a connected user successfully saves their first listing",
-        "Core value: percentage of captured listings saved without manual re-entry",
-        "Reliability: extraction and Excel-write success rates by job board",
-        "Retention: candidates who save or update applications in later weeks",
-        "Quality signal: duplicate warnings accepted and fields corrected before save"
-      ]},
-      { type: "heading", content: "Tradeoffs", level: 2 },
-      { type: "text", content: "Automatic extraction makes the workflow fast, but job boards use inconsistent markup and change frequently. A preview step adds one click, yet preserves trust by letting the user correct mistakes before anything reaches their workbook. Excel also limits the experience compared with a custom backend, but it gives users ownership, portability, and an immediately familiar data model." },
-      { type: "heading", content: "Next experiments", level: 2 },
-      { type: "list", items: [
-        "Test whether candidates prefer one-click capture or a short editable preview",
-        "Measure which extracted fields are corrected most often and improve those parsers first",
-        "Compare follow-up reminders with a simple overdue view before building notifications",
-        "Interview users who stop updating statuses to learn whether the problem is friction or low perceived value"
-      ]}
+      { type: "callout", title: "The product thesis", content: "The spreadsheet is not the problem. The real problem is that the moment of discovery and the system of record live in different places. The product should close that gap without taking ownership of the user's data.", variant: "success" },
+      { type: "heading", content: "A job search loses value in the handoff", level: 2 },
+      { type: "text", content: "A candidate finds a role in the browser, forms an opinion about it, and then leaves that context behind to document the opportunity somewhere else. The obvious cost is repeated data entry. The more important cost is decay: useful details disappear, follow-ups slip, statuses stop reflecting reality, and the spreadsheet becomes an archive of intentions rather than a tool for making decisions." },
+      { type: "text", content: "Most products respond by replacing the spreadsheet with a proprietary dashboard. That solves the vendor's data-model problem, but asks the candidate to adopt another destination during an already fragmented process. I took the opposite position: keep Excel as the durable personal layer and make the browser extension the connective tissue around it." },
+      { type: "heading", content: "From form filler to decision infrastructure", level: 2 },
+      { type: "text", content: "The first interaction is deliberately modest. On a listing page, the extension extracts the company, role, location, source, and date; the candidate reviews the capture; a normalized row is written to a table they control. Duplicate detection prevents the same opportunity from quietly entering twice. The value is not the saved typing by itself. It is the creation of clean, trustworthy data at the exact moment the opportunity still has context." },
+      { type: "text", content: "Once that foundation is reliable, the workbook can become more than a ledger. Status changes reveal where applications stall. Time-in-stage exposes slow processes. Follow-up dates turn passive rows into commitments. Response and conversion patterns can help a candidate distinguish productive effort from activity that only feels productive." },
+      { type: "heading", content: "Trust is part of the interface", level: 2 },
+      { type: "text", content: "Job boards are inconsistent and their markup changes without warning, so fully automatic capture would create a fast but untrustworthy product. The editable preview is therefore not a concession; it is the trust boundary. It makes the system's interpretation visible before any data is written and creates a feedback signal about which fields and sources fail most often." },
+      { type: "text", content: "The same principle governs the Excel integration. A custom backend would make richer automation easier, but it would also turn a personal job-search history into product-owned data. Writing to the user's workbook preserves portability, makes the data legible outside the extension, and gives the product a clear reason to exist without manufacturing lock-in." },
+      { type: "heading", content: "The first release", level: 2 },
+      { type: "text", content: "The smallest credible release connects one workbook, captures and previews one active listing, writes a normalized row, warns about likely duplicates, and links back to the saved record. Its success should be judged by whether people continue to maintain a more complete record with less correction—not by the raw number of fields extracted or notifications sent." },
+      { type: "heading", content: "A larger opportunity", level: 2 },
+      { type: "text", content: "The long-term opportunity is a personal decision layer for the job search: one that learns which sources produce interviews, shows where momentum is being lost, and helps candidates allocate their limited attention. That future only becomes credible if the quiet foundational work—capture quality, transparent correction, dependable writes, and user ownership—is excellent first." },
+      { type: "callout", title: "Current status", content: "This is a product case study and implementation direction, not a claim of shipped outcomes. The next proof point is a working capture-to-Excel loop tested across real job boards and real search behavior.", variant: "info" }
     ]
   },
   {
     slug: "markov-chains-heavy-tails",
     title: "Markov Chains & Heavy Tails",
-    subtitle: "Modeling repeat behavior and rare, high-impact outcomes",
-    description: "An in-progress case study on using state transitions and heavy-tail distributions to reason about risk beyond the average.",
+    subtitle: "Looking past the average to model movement, extremes, and risk",
+    description: "A study of systems where history matters and rare events dominate—combining state transitions with tail analysis to make risk visible before the average becomes misleading.",
     category: "case-study",
     tags: ["Python", "Probability", "Markov Chains", "Heavy-Tail Analysis"],
     color: "bg-fun-coral",
@@ -124,27 +80,25 @@ export const projects: Project[] = [
     role: "Data Scientist",
     year: "2026",
     content: [
-      { type: "callout", title: "Case study in progress", content: "This is a placeholder for the full analysis. The final version will include the dataset, assumptions, evaluation, and decision implications.", variant: "info" },
-      { type: "heading", content: "The question", level: 2 },
-      { type: "text", content: "Averages can make a system look predictable even when a small number of extreme events drive most of the outcome. This study asks how state transitions and heavy-tail behavior can produce a more decision-useful picture of that risk." },
-      { type: "heading", content: "Working hypothesis", level: 2 },
-      { type: "text", content: "Modeling how observations move between states—and treating extreme values as a feature rather than noise—should reveal patterns that a single aggregate forecast misses." },
-      { type: "heading", content: "Planned approach", level: 2 },
-      { type: "list", items: [
-        "Define meaningful states and estimate transition probabilities",
-        "Test whether the observed tail is better explained by power-law or alternative distributions",
-        "Compare results with a simpler baseline model",
-        "Translate model behavior into thresholds and decisions a stakeholder could use"
-      ]},
-      { type: "heading", content: "Product notes", level: 2 },
-      { type: "text", content: "The goal is not to use a sophisticated model for its own sake. The final case will explain when the added complexity changes a decision, when a simpler baseline is enough, and how uncertainty should be communicated." }
+      { type: "callout", title: "The premise", content: "A system can look stable in aggregate while quietly moving toward a state from which recovery is unlikely. It can also appear low-risk until one extreme event overwhelms years of ordinary behavior.", variant: "success" },
+      { type: "heading", content: "The average describes neither memory nor consequence", level: 2 },
+      { type: "text", content: "Many forecasts compress a changing system into a central tendency. That is useful when observations are independent and extremes are genuinely exceptional. It is dangerous when today's condition changes the probability of tomorrow's condition, or when a small number of outcomes carry most of the total cost." },
+      { type: "text", content: "This study brings those two failures together. A Markov model represents the system's memory through transitions: where it tends to remain, which paths are reversible, and which states behave like traps. Heavy-tail analysis asks a different question: whether the largest observations belong to the same world as the rest of the data, or whether risk grows faster than familiar assumptions allow." },
+      { type: "heading", content: "Two models, one decision surface", level: 2 },
+      { type: "text", content: "The interesting work is not fitting the models independently. It is connecting them. If extreme outcomes become more likely after a particular sequence of state changes, a decision-maker needs an early-warning threshold, not merely a better estimate of the mean. If the tail is heavy but state transitions add no useful signal, the simpler intervention may be to build more resilience rather than predict the next event." },
+      { type: "text", content: "That framing shifts the output from 'what will happen?' to three more useful questions: which state are we in, how easily can we leave it, and how much loss must the system be able to absorb if the rare outcome arrives?" },
+      { type: "heading", content: "The analytical discipline", level: 2 },
+      { type: "text", content: "States must be defined from meaningful behavior rather than convenient bins. Transition estimates need uncertainty, especially where observations are sparse. Candidate tail distributions must be compared rather than declared from a straight line on a log-log plot. Both models need a simpler baseline so that added sophistication earns its place through a changed decision." },
+      { type: "heading", content: "What a useful result would look like", level: 2 },
+      { type: "text", content: "A successful analysis would produce a map of risk, not a decorative model: the states that deserve attention, the transitions that signal deterioration or recovery, the plausible scale of extreme loss, and the intervention point at which waiting becomes more expensive than acting." },
+      { type: "callout", title: "Current status", content: "The conceptual model is defined; the empirical case is not complete. Results will be published with the dataset, state definitions, distribution comparisons, sensitivity analysis, and the decision each result is meant to inform.", variant: "info" }
     ]
   },
   {
     slug: "advanced-ml",
     title: "Advanced ML, Applied Deliberately",
-    subtitle: "Choosing model complexity only when the problem earns it",
-    description: "An in-progress machine-learning case study focused on baselines, model selection, interpretability, and production tradeoffs.",
+    subtitle: "Testing whether model complexity earns its operational cost",
+    description: "A decision framework for choosing machine-learning complexity by the value of the errors it prevents—not by leaderboard performance alone.",
     category: "case-study",
     tags: ["Python", "Machine Learning", "Model Evaluation", "Explainability"],
     color: "bg-fun-blue",
@@ -152,27 +106,25 @@ export const projects: Project[] = [
     role: "Machine Learning Engineer",
     year: "2026",
     content: [
-      { type: "callout", title: "Case study in progress", content: "This placeholder defines the story and evaluation plan. Results and model claims will be added only after the experiment is complete.", variant: "info" },
-      { type: "heading", content: "The problem", level: 2 },
-      { type: "text", content: "The case begins with a prediction problem where a transparent baseline establishes the minimum useful performance. More advanced methods are introduced only if they create a meaningful improvement." },
-      { type: "heading", content: "How it will be evaluated", level: 2 },
-      { type: "list", items: [
-        "Start with a simple, explainable baseline",
-        "Select metrics based on the cost of different errors",
-        "Compare performance, inference cost, interpretability, and maintenance burden",
-        "Document feature importance, failure modes, drift, and monitoring needs"
-      ]},
-      { type: "heading", content: "The decision", level: 2 },
-      { type: "text", content: "The final recommendation will answer a product question, not just report a score: is the incremental model quality worth the additional operational and interpretability cost?" },
-      { type: "heading", content: "What comes next", level: 2 },
-      { type: "text", content: "Add the real dataset, baseline results, candidate models, error analysis, and a concise deployment recommendation." }
+      { type: "callout", title: "The governing idea", content: "The best model is not the most sophisticated one. It is the least complicated system that changes the decision enough to justify its ongoing cost.", variant: "success" },
+      { type: "heading", content: "Model selection is an operating decision", level: 2 },
+      { type: "text", content: "Machine-learning work is often narrated as a climb from baseline to higher score. Production systems live with a different reality. Every improvement arrives with inference cost, data dependencies, monitoring obligations, explanation burden, and new ways to fail. A model can win the benchmark and still be the wrong product choice." },
+      { type: "text", content: "This case study starts by assigning value and consequence to the prediction itself. Which mistakes cause lost revenue, unfair treatment, wasted attention, or irreversible action? Which errors can be reviewed by a person, and which happen at a scale where review is impossible? Those answers determine the metric, the threshold, and eventually whether machine learning belongs in the workflow at all." },
+      { type: "heading", content: "A baseline is a competing product", level: 2 },
+      { type: "text", content: "The baseline is not a box to check before using a more impressive model. It is a credible alternative with advantages: it is cheaper, easier to explain, faster to debug, and often more stable under change. A complex candidate must beat it where the decision is expensive, not merely improve an average score by a small amount." },
+      { type: "heading", content: "Evaluation beyond a single number", level: 2 },
+      { type: "text", content: "The comparison will examine error slices, calibration, behavior on unfamiliar data, inference latency, feature availability, and sensitivity to drift. Interpretability will be treated as a product requirement rather than a post-hoc chart: can the people affected by the decision understand the relevant reason, and can the team diagnose a failure quickly enough to operate the system responsibly?" },
+      { type: "text", content: "The deployment recommendation should therefore look more like an investment case than a model report. It must show the incremental value created, the infrastructure and oversight required to sustain it, the conditions under which the model should abstain, and the point at which the simpler system becomes preferable again." },
+      { type: "heading", content: "The broader ambition", level: 2 },
+      { type: "text", content: "The aim is a reusable way to decide how much intelligence a product actually needs. In mature systems, restraint is not a lack of ambition; it is the ability to spend complexity only where it compounds into better decisions." },
+      { type: "callout", title: "Current status", content: "This is the evaluation thesis. The empirical study still requires a selected dataset, published baseline, candidate models, error analysis, operating-cost comparison, and a final deploy-or-decline recommendation.", variant: "info" }
     ]
   },
   {
     slug: "marketing-analytics",
     title: "Marketing Analytics",
-    subtitle: "Connecting acquisition activity to retained value",
-    description: "An in-progress measurement case study spanning funnels, cohorts, attribution, and experiments that inform budget decisions.",
+    subtitle: "Finding which acquisition channels create customers who stay",
+    description: "A marketing measurement system designed to connect acquisition spend with retained customer value—and make uncertainty explicit enough to guide the next investment.",
     category: "case-study",
     tags: ["SQL", "Cohort Analysis", "Experimentation", "Attribution"],
     color: "bg-fun-green",
@@ -180,27 +132,27 @@ export const projects: Project[] = [
     role: "Product Analyst",
     year: "2026",
     content: [
-      { type: "callout", title: "Case study in progress", content: "This is a placeholder structure. Real campaign data, findings, and impact will replace the examples when the analysis is ready.", variant: "info" },
-      { type: "heading", content: "The business question", level: 2 },
-      { type: "text", content: "Which acquisition efforts create durable customer value, and which only make the top of the funnel look busy? The analysis is designed around the budget or product decision it needs to support." },
-      { type: "heading", content: "Measurement plan", level: 2 },
-      { type: "list", items: [
-        "Define the acquisition-to-retention funnel and its decision points",
-        "Compare channel cohorts using activation, retention, and value—not signups alone",
-        "Document attribution assumptions and known blind spots",
-        "Propose experiments for the highest-leverage uncertainties"
-      ]},
-      { type: "heading", content: "Product thinking", level: 2 },
-      { type: "text", content: "A useful dashboard is not the finish line. The case will show which decision each metric supports, what action a change should trigger, and which measurements can safely be left out." },
-      { type: "heading", content: "What comes next", level: 2 },
-      { type: "text", content: "Add the real funnel, cohort views, campaign comparison, experiment proposal, and the resulting recommendation." }
+      { type: "callout", title: "The measurement thesis", content: "Marketing should not receive credit for creating a lead if the product cannot turn that lead into durable value. Acquisition and retention belong in the same economic story.", variant: "success" },
+      { type: "heading", content: "The top of the funnel can hide a weak business", level: 2 },
+      { type: "text", content: "Campaign dashboards are very good at showing activity. Impressions, clicks, and sign-ups arrive quickly, carry precise timestamps, and make performance feel observable. The outcomes that matter—activation, repeat behavior, margin, and retention—arrive later and are shared with the product itself. That delay encourages teams to optimize the part of the customer journey that is easiest to count." },
+      { type: "text", content: "This project reframes marketing analytics around capital allocation. The central question is not which channel generated the most customers, but which source produced customers whose behavior justified what it cost to acquire them—and how confident we are that the channel deserves the credit." },
+      { type: "heading", content: "One journey, several clocks", level: 2 },
+      { type: "text", content: "The measurement model connects acquisition source to meaningful activation and then follows cohorts long enough to observe retention and value. That requires respecting time. A young cohort should not be penalized for having fewer opportunities to return, and a fast-converting channel should not automatically outrank one that produces slower but more durable customers." },
+      { type: "text", content: "The funnel is therefore paired with cohort curves and payback windows. Together they show not only where customers disappear, but whether the economics improve as a cohort matures. Segmenting those views by channel, campaign, and customer type creates a more useful picture of quality than blended conversion rates." },
+      { type: "heading", content: "Attribution is an assumption, not a fact", level: 2 },
+      { type: "text", content: "A touchpoint receiving credit is not the same as that touchpoint causing the outcome. Last-click attribution rewards proximity; multi-touch rules distribute confidence without necessarily creating it. Rather than hide that uncertainty inside a model, the analysis will state the attribution rule, show how conclusions change under plausible alternatives, and identify where an experiment is worth more than another layer of reporting." },
+      { type: "heading", content: "From dashboard to operating rhythm", level: 2 },
+      { type: "text", content: "The final product should be a recurring decision process. A change in acquisition quality should lead to a budget review. A drop between sign-up and activation should create a product question. A wide confidence interval should trigger patience or an experiment, not a confident recommendation. Metrics that do not change an action do not earn permanent space." },
+      { type: "heading", content: "The larger opportunity", level: 2 },
+      { type: "text", content: "When acquisition and product behavior share the same measurement language, growth stops being a contest between teams. Marketing can optimize for customers the product is equipped to serve, product can see where expectations break after acquisition, and finance can evaluate growth as an investment with a time horizon rather than a stream of clicks." },
+      { type: "callout", title: "Current status", content: "The decision framework is defined. The finished case still needs the underlying campaign data, explicit cohort definitions, attribution sensitivity, uncertainty estimates, and an experiment or budget recommendation supported by the evidence.", variant: "info" }
     ]
   },
   {
     slug: "letterboxd-rss",
     title: "Letterboxd RSS Service",
-    subtitle: "RSS feed service for Letterboxd data",
-    description: "A simple service to pull RSS data from Letterboxd. Perfect for personal websites and automations.",
+    subtitle: "Turning public Letterboxd activity into useful JSON",
+    description: "A lightweight interoperability layer that turns Letterboxd's public activity feeds into dependable data for websites, archives, and personal automations.",
     category: "project",
     tags: ["Node.js", "Express", "RSS"],
     color: "bg-fun-coral",
@@ -214,25 +166,22 @@ export const projects: Project[] = [
       { src: "/projects/taskmanager.jpg", type: "image" },
     ],
     content: [
-      { type: "heading", content: "What it does", level: 2 },
-      { type: "text", content: "Letterboxd doesn't offer a public API, but it does expose RSS feeds. This service wraps those feeds into a clean JSON API you can consume from any website or automation tool." },
-      { type: "heading", content: "How it works", level: 2 },
-      { type: "list", items: [
-        "Fetches and parses Letterboxd RSS feeds for any public user",
-        "Returns structured JSON with film title, rating, review, and poster data",
-        "Lightweight Express server with caching to avoid hammering Letterboxd",
-        "Easy to self-host or deploy to any Node.js platform"
-      ]},
-      { type: "heading", content: "Why I built it", level: 2 },
-      { type: "text", content: "I wanted to show my recent watches on my personal site. The existing solutions were either over-engineered or unreliable. This does one thing well — pulls your Letterboxd activity into a format you can use anywhere." },
-      { type: "link-card", title: "View on GitHub", description: "Source code and setup instructions", href: "https://github.com/avnish100/letterboxd-rss", external: true }
+      { type: "heading", content: "Personal data should be able to travel", level: 2 },
+      { type: "text", content: "I wanted my recent film activity to appear on my own site, in my own visual language, without manually publishing it twice. Letterboxd does not expose a general public API for that workflow, but it does publish RSS feeds. The data was available; it simply was not shaped for the places I wanted to use it." },
+      { type: "text", content: "The service treats RSS as a quiet interoperability layer. It fetches a public profile feed, parses the film and review metadata, normalizes inconsistent fields, and returns a predictable JSON representation. A website or automation can then work with the activity without knowing anything about XML, feed conventions, or Letterboxd's markup." },
+      { type: "heading", content: "A narrow service with a clear boundary", level: 2 },
+      { type: "text", content: "The temptation was to imitate the API Letterboxd does not provide. That would create a larger surface area built on an unstable foundation. Instead, the service remains an adapter: it exposes only what the public feed reliably contains and makes the absence of data explicit rather than inventing completeness." },
+      { type: "text", content: "Caching protects the upstream service and makes repeat requests inexpensive. The Express implementation keeps deployment ordinary and self-hosting realistic. If the feed changes, the parsing logic can evolve behind a stable response contract, so every consumer does not need to solve the same integration problem again." },
+      { type: "heading", content: "The idea beyond a film feed", level: 2 },
+      { type: "text", content: "The project is small, but the principle is broader: activity created on a platform should not be trapped in that platform's interface. A dependable adapter gives personal websites, archives, recommendation experiments, and automations a way to build on the record people have already created." },
+      { type: "link-card", title: "View on GitHub", description: "Read the implementation and run the service yourself", href: "https://github.com/avnish100/letterboxd-rss", external: true }
     ]
   },
   {
     slug: "financial-analyst-agent",
-    title: "Multi Agent Financial Analyst",
-    subtitle: "AI-powered financial analysis using multiple agents",
-    description: "Proof of concept for a multi-agent financial analyst that gives quick summaries of financial data.",
+    title: "Multi-Agent Financial Analyst",
+    subtitle: "Testing whether specialist agents produce better financial summaries",
+    description: "A research prototype for financial analysis that makes each agent's responsibility, evidence, and handoff inspectable instead of hiding the work behind one confident answer.",
     category: "experiment",
     tags: ["Python", "AI Agents", "Finance"],
     color: "bg-fun-blue",
@@ -246,24 +195,27 @@ export const projects: Project[] = [
       { src: "/projects/aiwriter.jpg", type: "image" },
     ],
     content: [
-      { type: "heading", content: "The idea", level: 2 },
-      { type: "text", content: "Financial analysis involves pulling data from multiple sources, running calculations, and synthesizing it into something actionable. This project explores whether multiple AI agents, each specialized in a different task, can collaborate to produce useful financial summaries." },
-      { type: "heading", content: "Architecture", level: 2 },
-      { type: "list", items: [
-        "Multiple specialized agents handling different aspects of analysis",
-        "Agents communicate and share context to build a complete picture",
-        "Python-based with a focus on quick, readable summaries",
-        "Designed as a proof of concept to explore multi-agent patterns"
-      ]},
-      { type: "callout", title: "Proof of Concept", content: "This is an exploration of multi-agent architectures, not a production financial tool. The goal was to learn how agents can be composed together effectively.", variant: "info" },
-      { type: "link-card", title: "View on GitHub", description: "Source code and documentation", href: "https://github.com/avnish100/financial-analyst-agent", external: true }
+      { type: "callout", title: "The research question", content: "Can an agent system produce analysis that is easier to inspect and challenge—not merely faster to generate—than a single model answering an open-ended financial prompt?", variant: "success" },
+      { type: "heading", content: "The problem is not a shortage of fluent answers", level: 2 },
+      { type: "text", content: "Financial analysis combines evidence gathering, calculation, interpretation, and synthesis. A general model can collapse those activities into one polished response, but fluency makes it difficult to see where a weak source, incorrect calculation, or unsupported inference entered the chain. In a consequential domain, the hidden path to the answer matters as much as the answer itself." },
+      { type: "heading", content: "Separating responsibility", level: 2 },
+      { type: "text", content: "The prototype decomposes the work into bounded roles. One agent gathers source material, another performs structured analysis, and another challenges or synthesizes the result. Their intermediate outputs remain visible and are passed forward as explicit context. The architecture is designed less like a panel of personalities and more like a traceable research process with named responsibilities." },
+      { type: "text", content: "That separation creates useful failure boundaries. A missing fact can be traced to research. A numerical inconsistency can be isolated from narrative interpretation. A final summary can cite the evidence it inherited rather than producing authority from tone. It also exposes disagreements that a single pass might smooth over." },
+      { type: "heading", content: "Coordination creates its own risk", level: 2 },
+      { type: "text", content: "Multiple agents are not automatically a stronger system. They can amplify the same false premise, strip nuance during a handoff, or spend more time and money producing a longer route to the same error. The right comparison is therefore not multi-agent versus no automation; it is this explicit workflow versus a carefully prompted single-agent baseline under the same evidence and evaluation criteria." },
+      { type: "heading", content: "What serious evaluation requires", level: 2 },
+      { type: "text", content: "The prototype should be judged on factual accuracy, calculation correctness, source traceability, internal consistency, latency, and cost. It should also be tested adversarially: conflicting sources, missing data, stale information, and prompts that invite false certainty. An agent should be rewarded for identifying an unresolved question or abstaining when the evidence cannot support a conclusion." },
+      { type: "heading", content: "The larger direction", level: 2 },
+      { type: "text", content: "The more interesting future is not an autonomous analyst that replaces judgment. It is a research environment that makes judgment better: collecting evidence, preserving provenance, surfacing disagreement, and letting a person inspect the route from source to conclusion before acting." },
+      { type: "callout", title: "Research prototype, not financial advice", content: "The current system explores orchestration and traceability. Its output is not verified investment research and should not be used to make financial decisions.", variant: "info" },
+      { type: "link-card", title: "View on GitHub", description: "Explore the prototype and orchestration code", href: "https://github.com/avnish100/financial-analyst-agent", external: true }
     ]
   },
   {
     slug: "bel-bullets",
     title: "BEL Bullets",
-    subtitle: "Website for a running community",
-    description: "Website for BEL Bullets — a running community. Built with Next.js and TailwindCSS.",
+    subtitle: "A fast, mobile-first home for a running community",
+    description: "A digital home for BEL Bullets that turns scattered community information into a clear invitation to understand the group, show up, and belong.",
     category: "project",
     tags: ["Next.js", "TailwindCSS"],
     color: "bg-fun-green",
@@ -278,23 +230,24 @@ export const projects: Project[] = [
       { src: "/projects/ecommerce.jpg", type: "image" },
     ],
     content: [
-      { type: "heading", content: "About the project", level: 2 },
-      { type: "text", content: "BEL Bullets is a running community that needed a web presence. I built them a clean, fast site using Next.js and TailwindCSS that serves as their main hub for information and community updates." },
-      { type: "heading", content: "Technical details", level: 2 },
-      { type: "list", items: [
-        "Built with Next.js for static generation and fast page loads",
-        "Styled with TailwindCSS for a responsive, clean design",
-        "Optimized for mobile since most runners check on their phones",
-        "Deployed and live at belbullets.run"
-      ]},
-      { type: "link-card", title: "Visit BEL Bullets", description: "See the live site", href: "https://belbullets.run/", external: true }
+      { type: "heading", content: "A community is understood before it is joined", level: 2 },
+      { type: "text", content: "BEL Bullets already existed through people, runs, and shared routines. What it lacked was a dependable public front door. New runners needed to understand what the group stood for, whether they would feel welcome, and how to take the first step without piecing the story together from scattered updates." },
+      { type: "text", content: "That made the website less of a publishing project and more of an orientation tool. The hierarchy had to answer human questions before organizational ones: Who is this for? What happens when I arrive? Where and when do people meet? What kind of commitment is expected?" },
+      { type: "heading", content: "Designing for the moment of intent", level: 2 },
+      { type: "text", content: "Running communities are encountered on the move—through a message, a social post, or a recommendation from a friend. The mobile experience therefore carries the main design, not a reduced version of the desktop site. Essential information stays close, typography does the navigational work, and the interface avoids standing between curiosity and participation." },
+      { type: "text", content: "Next.js static generation keeps the site quick and resilient, while a restrained Tailwind CSS system makes new pages and updates feel like part of the same place. The technical choices are intentionally quiet; the community, not the framework, should be what visitors remember." },
+      { type: "heading", content: "Growth without turning community into software", level: 2 },
+      { type: "text", content: "The site can grow into a richer record of the group—routes, stories, recurring events, and guidance for first-time runners—without becoming another social network the community must maintain. Its role is to make the real-world experience more legible and accessible, then get out of the way." },
+      { type: "heading", content: "The result", level: 2 },
+      { type: "text", content: "BEL Bullets now has a clear, fast public home that can welcome someone before their first run and remain useful after it. The value is not a long feature list; it is a more coherent path from hearing about the community to feeling able to join it." },
+      { type: "link-card", title: "Visit BEL Bullets", description: "See the community's live website", href: "https://belbullets.run/", external: true }
     ]
   },
   {
     slug: "the-altarasa",
     title: "The Altarasa",
-    subtitle: "Custom Shopify store for a brand",
-    description: "A fully customized Shopify store built on the Dawn theme with custom features like wishlists, product bundles, bookmarks, and a mobile-first navigation experience.",
+    subtitle: "Extending Shopify around a brand's real shopping experience",
+    description: "A custom commerce and editorial system for The Altarasa—extending Shopify so discovery, expertise, and purchase feel like one coherent brand experience.",
     category: "project",
     tags: ["Shopify", "Liquid", "JavaScript", "Vercel"],
     color: "bg-fun-yellow",
@@ -312,27 +265,19 @@ export const projects: Project[] = [
       {src: "/projects/taskmanager.jpg", type:"image"}
     ],
     content: [
-      { type: "heading", content: "About the project", level: 2 },
-      { type: "text", content: "Built a fully customized Shopify storefront for The Altarasa from the ground up using Shopify's Dawn theme as a base. The store needed to go well beyond a standard template — with custom interactive features, mobile-first UX, and serverless backend integrations." },
-      { type: "heading", content: "Custom features", level: 2 },
-      { type: "list", items: [
-        "WhatsApp chat integration with pre-filled messages and price inquiry support",
-        "Sticky mobile navigation bar with quick access to key store areas",
-        "Article bookmarks system with a serverless Vercel backend for persistence",
-        "Wishlist feature for saving favorite products",
-        "Product bundles for curated multi-item offers",
-        "Promotional popups and sticky information bar",
-        "Expert/team section and flexi layout system for rich content pages",
-        "Social sharing across product and article pages"
-      ]},
-      { type: "heading", content: "Technical highlights", level: 2 },
-      { type: "list", items: [
-        "Customized Shopify Dawn theme using Liquid, JavaScript, and CSS",
-        "Serverless backend on Vercel for the bookmarks system",
-        "Mobile-first design with a bottom tab bar navigation",
-        "Fully configurable via Shopify's theme editor — no code changes needed for the client"
-      ]},
-      { type: "link-card", title: "Visit The Altarasa", description: "See the live store", href: "https://thealtarasa.in", external: true }
+      { type: "heading", content: "The store had to carry more than inventory", level: 2 },
+      { type: "text", content: "The Altarasa combines products with editorial knowledge and a point of view. A conventional Shopify theme could process the transaction, but it separated discovery, expertise, and purchase into different kinds of pages. The central design challenge was to make those modes feel like one brand experience without sacrificing the operational strengths that made Shopify the right foundation." },
+      { type: "heading", content: "Building a layer around consideration", level: 2 },
+      { type: "text", content: "Not every visitor is ready to buy in one session. Wishlists preserve product intent. Editorial bookmarks let someone return to useful guidance. Curated bundles turn the brand's expertise into a shoppable recommendation. WhatsApp enquiries carry product and price context into a conversation instead of making the customer restate what they were viewing." },
+      { type: "text", content: "Together, those features create continuity across a longer decision. They treat reading, saving, asking, and purchasing as connected behaviors rather than unrelated page events." },
+      { type: "heading", content: "Mobile navigation as a product decision", level: 2 },
+      { type: "text", content: "On a catalogue with both commerce and editorial content, a generic collapsed menu makes important destinations feel equally distant. The persistent mobile navigation gives the most-used parts of the store a stable place and reduces the cost of moving between discovery and intent. Promotional surfaces and sharing actions support that journey without becoming the architecture of the site." },
+      { type: "heading", content: "Customization the client can still operate", level: 2 },
+      { type: "text", content: "I extended Dawn through Liquid, JavaScript, and CSS rather than replacing its conventions wholesale. Flexible sections expose layout, expert, team, and promotional content through the theme editor, allowing routine changes without developer intervention. The only custom backend responsibility—persistent editorial bookmarks—lives in a small serverless service on Vercel." },
+      { type: "text", content: "That boundary matters. Deep theme customization creates upgrade pressure, and every external service adds another place the store can fail. Keeping most behavior inside Shopify and isolating the exceptional stateful feature makes the maintenance burden visible and contained." },
+      { type: "heading", content: "A platform for the brand, not just the launch", level: 2 },
+      { type: "text", content: "The resulting storefront can support a richer relationship than browse-and-buy. Products, expert guidance, saved intent, bundles, and direct conversation now sit inside the same system. The long-term opportunity is to use that continuity to understand how customers move from curiosity to confidence—while keeping the experience recognizably The Altarasa and the operation manageable by the team behind it." },
+      { type: "link-card", title: "Visit The Altarasa", description: "Explore the live commerce experience", href: "https://thealtarasa.in", external: true }
     ]
   }
 ]
